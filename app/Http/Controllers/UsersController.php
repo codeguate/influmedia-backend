@@ -31,7 +31,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return Response::json(Users::with('roles')->get(), 200);
+        return Response::json(Users::whereRaw("rol IS NULL")->with('roles')->get(), 200);
     }
 
 
@@ -140,6 +140,7 @@ class UsersController extends Controller
                      $newObject->apellidos = $request->get('apellidos');
                      $newObject->rol = $request->get('rol');
                      $newObject->nacimiento = $request->get('nacimiento');
+                     $newObject->foto = $request->get('foto');
                      $newObject->codigo = $request->get('codigo');
                      $newObject->descripcion = $request->get('descripcion', '');
                      $newObject->telefono = $telefono;
@@ -151,23 +152,23 @@ class UsersController extends Controller
                      if ($objectSee) {
                         $baseimagen = ImageCreateTrueColor(512,1106);
                         //Cargamos la primera imagen(cabecera)
-                        if(file_exists("https://5bconectate.com/Asset/img/Invitacion-min.png")){
-                            $logo = ImageCreateFromPng("https://5bconectate.com/Asset/img/Invitacion-min.png");
+                        if(file_exists("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png")){
+                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
 
                         }else{
-                            $logo = ImageCreateFromPng("https://5bconectate.com/Asset/img/Invitacion-min.png");
+                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
 
                         }
                         //Unimos la primera imagen con la imagen base
                         imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 512, 1106, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://5bconectate.com/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
                         imagecopymerge($baseimagen, $ts_viewer, 110, 50, 0, 0, 300, 300, 100);
                         $img = new TextToImage;
                         $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
                         $img->saveAsPng($objectSee->nombres.'-'.$objectSee->apellidos.'-name','');
-                        $textImg = ImageCreateFromPng("https://5bconectate.com/backend/public/".$objectSee->nombres."-".$objectSee->apellidos."-name.png");
+                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".$objectSee->nombres."-".$objectSee->apellidos."-name.png");
                         imagecopymerge($baseimagen, $textImg, 110, 530, 0, 0, 300, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
@@ -175,7 +176,7 @@ class UsersController extends Controller
                         ImageDestroy($logo);
                         ImageDestroy($ts_viewer);
                         ImageDestroy($baseimagen);
-                        $url = "https://5bconectate.com/backend/public/"."".$objectSee->codigo."_salida.png";
+                        $url = "https://5bconectate.com/influmedia/backend/public/"."".$objectSee->codigo."_salida.png";
                         Mail::send('emails.confirm', ['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'app' => 'http://me.JoseDanielRodriguez.gt', 'password' => $request->get('password'), 'username' => $objectSee->username, 'codigo' => $objectSee->codigo,'email' => $objectSee->email,'imagen' => $url, 'name' => $objectSee->nombres.' '.$objectSee->apellidos,], function (Message $message) use ($objectSee){
                             $message->from('registro@5b.com.gt', 'Info Registro 5B')
                                     ->sender('registro@5b.com.gt', 'Info Registro 5B')
@@ -222,23 +223,23 @@ class UsersController extends Controller
                      if ($objectSee) {
                         $baseimagen = ImageCreateTrueColor(512,1106);
                         //Cargamos la primera imagen(cabecera)
-                        if(file_exists("https://5bconectate.com/Asset/img/Invitacion-min.png")){
-                            $logo = ImageCreateFromPng("https://5bconectate.com/Asset/img/Invitacion-min.png");
+                        if(file_exists("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png")){
+                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
 
                         }else{
-                            $logo = ImageCreateFromPng("https://5bconectate.com/Asset/img/Invitacion-min.png");
+                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
 
                         }
                         //Unimos la primera imagen con la imagen base
                         imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 512, 1106, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://5bconectate.com/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
                         imagecopymerge($baseimagen, $ts_viewer, 110, 50, 0, 0, 300, 300, 100);
                         $img = new TextToImage;
                         $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
                         $img->saveAsPng($objectSee->nombres.'-'.$objectSee->apellidos.'-name','');
-                        $textImg = ImageCreateFromPng("https://5bconectate.com/backend/public/".$objectSee->nombres."-".$objectSee->apellidos."-name.png");
+                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".$objectSee->nombres."-".$objectSee->apellidos."-name.png");
                         imagecopymerge($baseimagen, $textImg, 110, 530, 0, 0, 300, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
@@ -246,7 +247,7 @@ class UsersController extends Controller
                         ImageDestroy($logo);
                         ImageDestroy($ts_viewer);
                         ImageDestroy($baseimagen);
-                        $url = "https://5bconectate.com/backend/public/"."".$objectSee->codigo."_salida.png";
+                        $url = "https://5bconectate.com/influmedia/backend/public/"."".$objectSee->codigo."_salida.png";
                         Mail::send('emails.confirm', ['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'app' => 'http://me.JoseDanielRodriguez.gt', 'password' => $request->get('password'), 'username' => $objectSee->username, 'codigo' => $objectSee->codigo,'email' => $objectSee->email,'imagen' => $url, 'name' => $objectSee->nombres.' '.$objectSee->apellidos,], function (Message $message) use ($objectSee){
                             $message->from('registro@5b.com.gt', 'Info Registro 5B')
                                     ->sender('registro@5b.com.gt', 'Info Registro 5B')
@@ -275,7 +276,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $objectSee = Users::whereRaw('id=?',$id)->with('roles','comprados','referidos')->first();
+        $objectSee = Users::whereRaw('id=?',$id)->with('roles')->first();
         if ($objectSee) {
             return Response::json($objectSee, 200);
         }
@@ -320,6 +321,7 @@ class UsersController extends Controller
                 $objectUpdate->state = $request->get('state', $objectUpdate->state);
                 $objectUpdate->rol = $request->get('rol', $objectUpdate->rol);
                 $objectUpdate->codigo = $request->get('codigo', $objectUpdate->codigo);
+                $objectUpdate->telefono = $request->get('telefono', $objectUpdate->telefono);
                 $objectUpdate->save();
                 $objectUpdate->roles;
 
