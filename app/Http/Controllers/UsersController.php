@@ -181,7 +181,7 @@ class UsersController extends Controller
                                     ->sender('registro@5b.com.gt', 'Info Registro 5B')
                                     ->to($objectSee->email, $objectSee->nombres.' '.$objectSee->apellidos)
                                     ->replyTo('registro@5b.com.gt', 'Info Registro 5B')
-                                    ->subject('Comprobante');
+                                    ->subject('Foro de Innovación 5B');
                         
                         });
                             // $apiKey = 'SX1SLWK6MOYRZHBIGD1Y';
@@ -252,7 +252,7 @@ class UsersController extends Controller
                                     ->sender('registro@5b.com.gt', 'Info Registro 5B')
                                     ->to($objectSee->email, $objectSee->nombres.' '.$objectSee->apellidos)
                                     ->replyTo('registro@5b.com.gt', 'Info Registro 5B')
-                                    ->subject('Comprobante');
+                                    ->subject('Foro de Innovación 5B');
                         
                         });
                     //     $apiKey = 'BT2VFMDLYHTIREKDQCF7';
