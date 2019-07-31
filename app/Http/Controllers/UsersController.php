@@ -178,11 +178,11 @@ class UsersController extends Controller
                         ImageDestroy($baseimagen);
                         $url = "https://5bconectate.com/influmedia/backend/public/"."".$objectSee->codigo."_salida.png";
                         Mail::send('emails.confirm', ['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'app' => 'http://me.JoseDanielRodriguez.gt', 'password' => $request->get('password'), 'username' => $objectSee->username, 'codigo' => $objectSee->codigo,'email' => $objectSee->email,'imagen' => $url, 'name' => $objectSee->nombres.' '.$objectSee->apellidos,], function (Message $message) use ($objectSee){
-                            $message->from('registro@5b.com.gt', 'Info Registro 5B')
-                                    ->sender('registro@5b.com.gt', 'Info Registro 5B')
+                            $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                     ->to($objectSee->email, $objectSee->nombres.' '.$objectSee->apellidos)
-                                    ->replyTo('registro@5b.com.gt', 'Info Registro 5B')
-                                    ->subject('Foro de Innovación 5B');
+                                    ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->subject('Somos Influmedia');
                         
                         });
                             // $apiKey = 'SX1SLWK6MOYRZHBIGD1Y';
@@ -249,11 +249,11 @@ class UsersController extends Controller
                         ImageDestroy($baseimagen);
                         $url = "https://5bconectate.com/influmedia/backend/public/"."".$objectSee->codigo."_salida.png";
                         Mail::send('emails.confirm', ['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'app' => 'http://me.JoseDanielRodriguez.gt', 'password' => $request->get('password'), 'username' => $objectSee->username, 'codigo' => $objectSee->codigo,'email' => $objectSee->email,'imagen' => $url, 'name' => $objectSee->nombres.' '.$objectSee->apellidos,], function (Message $message) use ($objectSee){
-                            $message->from('registro@5b.com.gt', 'Info Registro 5B')
-                                    ->sender('registro@5b.com.gt', 'Info Registro 5B')
+                            $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                     ->to($objectSee->email, $objectSee->nombres.' '.$objectSee->apellidos)
-                                    ->replyTo('registro@5b.com.gt', 'Info Registro 5B')
-                                    ->subject('Foro de Innovación 5B');
+                                    ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->subject('Somos Influmedia');
                         
                         });
                     //     $apiKey = 'BT2VFMDLYHTIREKDQCF7';
@@ -366,10 +366,10 @@ class UsersController extends Controller
                 $objectUpdate->state = 21;
                 
                 Mail::send('emails.recovery', ['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'password' => $pass, 'username' => $objectUpdate->username, 'email' => $objectUpdate->email, 'name' => $objectUpdate->nombres.' '.$objectUpdate->apellidos,], function (Message $message) use ($objectUpdate){
-                    $message->from('registro@5b.com.gt', 'Info Registro 5B')
-                            ->sender('registro@5b.com.gt', 'Info Registro 5B')
+                    $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                            ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
                             ->to($objectUpdate->email, $objectUpdate->nombres.' '.$objectUpdate->apellidos)
-                            ->replyTo('registro@5b.com.gt', 'Info JoseDanielRodriguez')
+                            ->replyTo('noreplay@smartdsmedia.com', 'Info JoseDanielRodriguez')
                             ->subject('Contraseña Reestablecida');
                 
                 });
