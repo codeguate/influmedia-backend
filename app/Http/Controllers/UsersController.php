@@ -167,8 +167,8 @@ class UsersController extends Controller
                         imagecopymerge($baseimagen, $ts_viewer, 110, 50, 0, 0, 300, 300, 100);
                         $img = new TextToImage;
                         $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
-                        $img->saveAsPng((trim($objectSee->nombres)).'-'.(trim($objectSee->apellidos)).'-name','');
-                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(trim($objectSee->nombres))."-".(trim($objectSee->apellidos))."-name.png");
+                        $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
+                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
                         imagecopymerge($baseimagen, $textImg, 110, 530, 0, 0, 300, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
@@ -238,8 +238,8 @@ class UsersController extends Controller
                         imagecopymerge($baseimagen, $ts_viewer, 110, 50, 0, 0, 300, 300, 100);
                         $img = new TextToImage;
                         $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
-                        $img->saveAsPng((trim($objectSee->nombres)).'-'.(trim($objectSee->apellidos)).'-name','');
-                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(trim($objectSee->nombres))."-".(trim($objectSee->apellidos))."-name.png");
+                        $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
+                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
                         imagecopymerge($baseimagen, $textImg, 110, 530, 0, 0, 300, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
