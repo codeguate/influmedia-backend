@@ -218,8 +218,8 @@ class UsersController extends Controller
     }
     public function sendEmail(Request $request){
 
-
-        $objectSee = Users::whereRaw('id=?',$request->get('id'))->with('roles')->first();
+        if($request->get('id')){
+            $objectSee = Users::whereRaw('id=?',$request->get('id'))->with('roles')->first();
                      if ($objectSee) {
                         $baseimagen = ImageCreateTrueColor(512,1106);
                         //Cargamos la primera imagen(cabecera)
@@ -267,6 +267,23 @@ class UsersController extends Controller
                             
                             return  Response::json($objectSee, 200);
                     }
+        }else if($request->get('email')){
+                     if ($request->get('email')!='') {
+                        Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono')], function (Message $message)  use ($request){
+                            $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->to('rosanna.diaz@influmediapr.com', "Rosanna Diaz")
+                                    ->cc($request->get('email'),$request->get('nombre'))
+                                    ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
+                                    ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
+                                    ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->subject('Influmedia');
+                        
+                        });
+                            return  Response::json($request, 200);
+                    }
+        }
+        
     }
     /**
      * Display the specified resource.
