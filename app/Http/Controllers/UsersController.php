@@ -267,6 +267,21 @@ class UsersController extends Controller
                             
                             return  Response::json($objectSee, 200);
                     }
+        }else if($request->get('type')){
+            if ($request->get('type')!='siman') {
+               Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono')], function (Message $message)  use ($request){
+                   $message->from('cocinasimancode@gmail.com', 'Cocina Siman')
+                           ->sender('cocinasimancode@gmail.com', 'Cocina Siman')
+                           ->to('antony.dieguez@code.com.gt', "Maria Chavez")
+                           ->cc($request->get('email'),$request->get('nombre'))
+                           ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
+                           ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
+                           ->replyTo('cocinasimancode@gmail.com', 'Cocina Siman')
+                           ->subject('SIMAN');
+               
+               });
+                   return  Response::json($request, 200);
+           }
         }else if($request->get('email')){
                      if ($request->get('email')!='') {
                         Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono')], function (Message $message)  use ($request){
@@ -283,6 +298,7 @@ class UsersController extends Controller
                             return  Response::json($request, 200);
                     }
         }
+
         
     }
     /**
