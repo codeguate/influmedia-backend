@@ -162,14 +162,14 @@ class UsersController extends Controller
                         //Unimos la primera imagen con la imagen base
                         imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 512, 1106, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
-                        imagecopymerge($baseimagen, $ts_viewer, 110, 50, 0, 0, 300, 300, 100);
+                        imagecopymerge($baseimagen, $ts_viewer, 210, 70, 0, 0, 200, 200, 100);
                         $img = new TextToImage;
                         $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
                         $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
                         $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
-                        imagecopymerge($baseimagen, $textImg, 110, 530, 0, 0, 300, 60, 100);
+                        imagecopymerge($baseimagen, $textImg, 310, 530, 0, 0, 300, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
                         //Limpiamos la memoria utilizada con las imagenes
@@ -233,14 +233,14 @@ class UsersController extends Controller
                         //Unimos la primera imagen con la imagen base
                         imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 512, 1106, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
-                        imagecopymerge($baseimagen, $ts_viewer, 110, 50, 0, 0, 300, 300, 100);
+                        imagecopymerge($baseimagen, $ts_viewer, 210, 70, 0, 0, 200, 200, 100);
                         $img = new TextToImage;
                         $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
                         $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
                         $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
-                        imagecopymerge($baseimagen, $textImg, 110, 530, 0, 0, 300, 60, 100);
+                        imagecopymerge($baseimagen, $textImg, 310, 530, 0, 0, 300, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
                         //Limpiamos la memoria utilizada con las imagenes
