@@ -30,7 +30,7 @@
                     <p class="card-text">{!! $telefono !!}</p>
                     <a href="{!! 'mailto:'.$email !!}" class="btn btn-primary">Contactar</a>
                 </div>
-                @if (($type) != 'siman')
+                @if (!$type || ($type && $type != 'siman'))
                 <div class="card-footer">
                     Influmedia
                 </div>

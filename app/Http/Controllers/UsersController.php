@@ -281,6 +281,18 @@ class UsersController extends Controller
                
                });
                    return  Response::json($request, 200);
+           }else{
+                Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono'),"type" => $request->get('type')], function (Message $message)  use ($request){
+                    $message->from('info@smartdsmedia.com', 'Info Smartdsmedia')
+                            ->sender('info@smartdsmedia.com', 'Info Smartdsmedia')
+                            ->to($request->get('email'),$request->get('nombre'))
+                            ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
+                            ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
+                            ->replyTo('info@smartdsmedia.com', 'Info Smartdsmedia')
+                            ->subject('SMARTDSMEDIA');
+                
+                });
+                    return  Response::json($request, 200);
            }
         }else if($request->get('email')){
                      if ($request->get('email')!='') {
