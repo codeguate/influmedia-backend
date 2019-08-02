@@ -269,7 +269,7 @@ class UsersController extends Controller
                     }
         }else if($request->get('type')){
             if ($request->get('type')=='siman') {
-               Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono')], function (Message $message)  use ($request){
+               Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono'),"type" => $request->get('type')], function (Message $message)  use ($request){
                    $message->from('cocinasimancode@gmail.com', 'Cocina Siman')
                            ->sender('cocinasimancode@gmail.com', 'Cocina Siman')
                            ->to('antony.dieguez@code.com.gt', "Maria Chavez")
