@@ -221,7 +221,7 @@ class UsersController extends Controller
         if($request->get('id')){
             $objectSee = Users::whereRaw('id=?',$request->get('id'))->with('roles')->first();
                      if ($objectSee) {
-                        $baseimagen = ImageCreateTrueColor(512,1106);
+                        $baseimagen = ImageCreateTrueColor(550,1000);
                         //Cargamos la primera imagen(cabecera)
                         if(file_exists("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png")){
                             $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
@@ -231,7 +231,7 @@ class UsersController extends Controller
 
                         }
                         //Unimos la primera imagen con la imagen base
-                        imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 512, 1106, 100);
+                        imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 550, 1000, 100);
                         //Cargamos la segunda imagen(cuerpo)
                         $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
