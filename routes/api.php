@@ -20,9 +20,9 @@ Route::get('send', "UsersController@sendEmail");
 Route::get('filter/{id}/users/{state}', "UsersController@getThisByFilter");
 Route::get('filter/{id}/codigos/{state}', "CodigosController@getThisByFilter");
 
-Route::get('rol/{id}/users', "Users@getUsersByRol");
+Route::get('rol/{id}/users', "UsersController@getUsersByRol");
 
-Route::post('nissan', "Users@getMyData");
+Route::post('nissan', "UsersController@getMyData");
 
 Route::put('check/codigo/{id}', 'CodigosController@marcar');
 Route::post('users/password/reset', 'UsersController@recoveryPassword');

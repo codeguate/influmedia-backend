@@ -226,7 +226,7 @@ class UsersController extends Controller
             return Response::json($returnData, 400);
         }
         else {
-            
+
             return  Response::json($request, 200);
             
         }
