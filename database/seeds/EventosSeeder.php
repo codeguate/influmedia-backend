@@ -31,7 +31,7 @@ class EventosSeeder extends Seeder
             'username'=>'administrador',
             'email'=>'daniel.rodriguez@code.com.gt',
             'nombres'=>'Administrador',
-            'codigo'=>'',
+            'codigo'=>'3j52T',
             'apellidos'=>'Sistemas',
             'descripcion'=>'',
             'telefono'=>'000000',

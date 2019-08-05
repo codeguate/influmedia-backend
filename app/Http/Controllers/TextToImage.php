@@ -32,9 +32,9 @@ class TextToImage extends Controller {
             $this->img = imagecreatetruecolor($imgWidth, $imgHeight);
             
             //create some colors
-            $white = imagecolorallocate($this->img, 0, 27, 69);
+            $white = imagecolorallocate($this->img, 255, 255, 255);
             $grey = imagecolorallocate($this->img, 128, 128, 128);
-            $black = imagecolorallocate($this->img, 255, 255, 255);
+            $black = imagecolorallocate($this->img, 71, 78, 187);
             imagecolortransparent($this->img, $white);
             imagefilledrectangle($this->img, 0, 0, $imgWidth - 1, $imgHeight - 1, $white);
             

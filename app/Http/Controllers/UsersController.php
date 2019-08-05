@@ -150,26 +150,26 @@ class UsersController extends Controller
                      
                      $objectSee = Users::whereRaw('id=?',$newObject->id)->with('roles')->first();
                      if ($objectSee) {
-                        $baseimagen = ImageCreateTrueColor(512,1106);
+                        $baseimagen = ImageCreateTrueColor(550,1000);
                         //Cargamos la primera imagen(cabecera)
                         if(file_exists("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png")){
                             $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
 
                         }else{
-                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
+                            $logo = ImageCreateFromPng("Invitacion.png");
 
                         }
                         //Unimos la primera imagen con la imagen base
-                        imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 512, 1106, 100);
+                        imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 550, 1000, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=175x175&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
-                        imagecopymerge($baseimagen, $ts_viewer, 210, 70, 0, 0, 200, 200, 100);
+                        imagecopymerge($baseimagen, $ts_viewer, 322, 790, 0, 0, 175, 175, 100);
                         $img = new TextToImage;
-                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
+                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 20, 500,60);
                         $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
-                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
-                        imagecopymerge($baseimagen, $textImg, 310, 530, 0, 0, 300, 60, 100);
+                        $textImg = ImageCreateFromPng("".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
+                        imagecopymerge($baseimagen, $textImg, 40, 620, 0, 0, 500, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
                         //Limpiamos la memoria utilizada con las imagenes
@@ -249,20 +249,20 @@ class UsersController extends Controller
                             $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
 
                         }else{
-                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
+                            $logo = ImageCreateFromPng("Invitacion.png");
 
                         }
                         //Unimos la primera imagen con la imagen base
                         imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 550, 1000, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=175x175&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
-                        imagecopymerge($baseimagen, $ts_viewer, 400, 800, 0, 0, 200, 200, 100);
+                        imagecopymerge($baseimagen, $ts_viewer, 322, 790, 0, 0, 175, 175, 100);
                         $img = new TextToImage;
-                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 16, 300,60);
+                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 20, 500,60);
                         $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
-                        $textImg = ImageCreateFromPng("https://5bconectate.com/influmedia/backend/public/".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
-                        imagecopymerge($baseimagen, $textImg, 110, 630, 0, 0, 300, 60, 100);
+                        $textImg = ImageCreateFromPng("".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
+                        imagecopymerge($baseimagen, $textImg, 40, 620, 0, 0, 500, 60, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
                         //Limpiamos la memoria utilizada con las imagenes
@@ -289,7 +289,8 @@ class UsersController extends Controller
                             
                             return  Response::json($objectSee, 200);
                     }
-        }else if($request->get('type')){
+        }
+        else if($request->get('type')){
             if ($request->get('type')=='siman') {
                Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono'),"type" => $request->get('type')], function (Message $message)  use ($request){
                    $message->from('cocinasimancode@gmail.com', 'Cocina Siman')
