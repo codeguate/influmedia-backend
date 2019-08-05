@@ -166,10 +166,10 @@ class UsersController extends Controller
                         //Juntamos la segunda imagen con la imagen base
                         imagecopymerge($baseimagen, $ts_viewer, 322, 790, 0, 0, 175, 175, 100);
                         $img = new TextToImage;
-                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 20, 500,60);
+                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 20, 500,70);
                         $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
                         $textImg = ImageCreateFromPng("".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
-                        imagecopymerge($baseimagen, $textImg, 40, 620, 0, 0, 500, 60, 100);
+                        imagecopymerge($baseimagen, $textImg, 40, 620, 0, 0, 500, 70, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
                         //Limpiamos la memoria utilizada con las imagenes
@@ -259,10 +259,10 @@ class UsersController extends Controller
                         //Juntamos la segunda imagen con la imagen base
                         imagecopymerge($baseimagen, $ts_viewer, 322, 790, 0, 0, 175, 175, 100);
                         $img = new TextToImage;
-                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 20, 500,60);
+                        $img->createImage(strtoupper($objectSee->nombres.' '.$objectSee->apellidos), 20, 500,70);
                         $img->saveAsPng((str_replace(" ", "-", $objectSee->nombres)).'-'.(str_replace(" ", "-", $objectSee->apellidos)).'-name','');
                         $textImg = ImageCreateFromPng("".(str_replace(" ", "-", $objectSee->nombres))."-".(str_replace(" ", "-", $objectSee->apellidos))."-name.png");
-                        imagecopymerge($baseimagen, $textImg, 40, 620, 0, 0, 500, 60, 100);
+                        imagecopymerge($baseimagen, $textImg, 40, 620, 0, 0, 500, 70, 100);
                         //Mostramos la imagen en el navegador
                         ImagePng($baseimagen,"".$objectSee->codigo."_salida.png",5);
                         //Limpiamos la memoria utilizada con las imagenes
