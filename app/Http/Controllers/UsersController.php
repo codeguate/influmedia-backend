@@ -211,6 +211,28 @@ class UsersController extends Controller
              }
          }
      }
+     public function getMyData(Request $request){
+        
+        $validator = Validator::make($request->all(), [
+            'nombre'          => 'required',
+            'telefono'          => 'required',
+        ]);
+        if ( $validator->fails() ) {
+            $returnData = array (
+                'status' => 400,
+                'message' => 'Invalid Parameters',
+                'validator' => $validator
+            );
+            return Response::json($returnData, 400);
+        }
+        else {
+            
+            return  Response::json($request, 200);
+            
+        }
+
+
+     }
     public function makePDF($data){
         $viewPDF = view('emails.confirm', $data);
         $pdf = PDF2::loadHTML($viewPDF);
