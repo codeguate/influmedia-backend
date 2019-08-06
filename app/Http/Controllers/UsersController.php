@@ -123,6 +123,7 @@ class UsersController extends Controller
              return Response::json($returnData, 400);
          }
          else {
+                DB::beginTransaction();
              $email = $request->get('email');
              $email_exists  = Users::whereRaw("email = ?", $email)->count();
              $user = $request->get('username');
@@ -191,7 +192,7 @@ class UsersController extends Controller
                             $message = new Image($number, $url);
                             $response = $client->send($message);
                         
-
+                            DB::commit();
                             return  Response::json($objectSee, 200);
                         }
                         else {
@@ -199,6 +200,7 @@ class UsersController extends Controller
                                 'status' => 404,
                                 'message' => 'No record found'
                             );
+                            DB::rollback();
                             return Response::json($returnData, 404);
                         }
              }else{
@@ -207,6 +209,7 @@ class UsersController extends Controller
                     'message' => 'User already exists',
                     'validator' => $validator->messages()->toJson()
                 );
+                DB::rollback();
                 return Response::json($returnData, 400);
              }
          }
