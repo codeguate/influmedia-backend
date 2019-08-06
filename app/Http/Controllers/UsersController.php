@@ -287,6 +287,53 @@ class UsersController extends Controller
                
                });
                    return  Response::json($request, 200);
+           }else if($request->get('type')=='foto'){
+                    $baseimagen = ImageCreateTrueColor(618,800);
+                    //Cargamos la primera imagen(cabecera)
+                    if(file_exists("https://somosinflumedia.com/Asset/img/Invitacion-min.png")){
+                        $logo = ImageCreateFromPng("https://somosinflumedia.com/Asset/img/Invitacion-min.png");
+
+                    }else{
+                        $logo = ImageCreateFromPng("fondo_invitacion.png");
+
+                    }
+                    //Unimos la primera imagen con la imagen base
+                    imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 618, 800, 100);
+                    //Cargamos la segunda imagen(cuerpo)
+                    // $ts_viewer = ImageCreateFromPng("".$request->get('codigo'));
+                    $ts_viewer = new TextToImage;
+                    $ts_viewer->createImage($request->get('codigo'), 12, 300,70);
+                    $ts_viewer->saveAsPng($request->get('codigo').'-cod','');
+                    $textts_viewer = ImageCreateFromPng("".$request->get('codigo')."-cod.png");
+                    imagecopymerge($baseimagen, $textts_viewer, 270, 620, 0, 0, 300, 70, 100);
+                    //Juntamos la segunda imagen con la imagen base
+                    $img = new TextToImage;
+                    $img->createImage(strtoupper($request->get('nombre')), 12, 300,70);
+                    $img->saveAsPng((str_replace(" ", "-", $request->get('nombre'))).'-nombre','');
+                    $textImg = ImageCreateFromPng("".(str_replace(" ", "-", $request->get('nombre')))."-nombre.png");
+                    imagecopymerge($baseimagen, $textImg, 90, 620, 0, 0, 300, 70, 100);
+                    //Mostramos la imagen en el navegador
+                    ImagePng($baseimagen,"".$request->get('codigo')."_invitacion.png",5);
+                    //Limpiamos la memoria utilizada con las imagenes
+                    ImageDestroy($logo);
+                    ImageDestroy($textts_viewer);
+                    ImageDestroy($baseimagen);
+                    $url = "https://somosinflumedia.com/backend/public/"."".$request->get('codigo')."_invitacion.png";
+                    Mail::send('emails.invitacion', ['imagen2' => 'https://somosinflumedia.com/backend/public/invitacion2.png','email' => $request->get('email'),'imagen' => $url, 'name' => $request->get('nombre')], function (Message $message) use ($request){
+                        $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                ->to($request->get('email'),$request->get('nombre'))
+                                ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                ->subject('Invitacion Influmedia');
+                    
+                    });
+                    $returnData = array (
+                        'status' => 200,
+                        'message' => 'success',
+                        'url' => $url
+                    );
+                    return Response::json($returnData, 200);
+
            }else{
                 Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono'),"type" => $request->get('type')], function (Message $message)  use ($request){
                     $message->from('info@smartdsmedia.com', 'Info Smartdsmedia')

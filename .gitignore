@@ -1,4 +1,7 @@
 .env
 public/*_salida.png
 public/*-name.png
+public/*-nombre.png
+public/*-cod.png
+public/*_invitacion.png
 vendor/
