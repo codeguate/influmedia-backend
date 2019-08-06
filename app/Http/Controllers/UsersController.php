@@ -152,8 +152,8 @@ class UsersController extends Controller
                      if ($objectSee) {
                         $baseimagen = ImageCreateTrueColor(550,1000);
                         //Cargamos la primera imagen(cabecera)
-                        if(file_exists("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png")){
-                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
+                        if(file_exists("https://somosinflumedia.com/Asset/img/Invitacion-min.png")){
+                            $logo = ImageCreateFromPng("https://somosinflumedia.com/Asset/img/Invitacion-min.png");
 
                         }else{
                             $logo = ImageCreateFromPng("Invitacion.png");
@@ -162,7 +162,7 @@ class UsersController extends Controller
                         //Unimos la primera imagen con la imagen base
                         imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 550, 1000, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=175x175&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=175x175&cht=qr&chl=https://somosinflumedia.com/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
                         imagecopymerge($baseimagen, $ts_viewer, 322, 790, 0, 0, 175, 175, 100);
                         $img = new TextToImage;
@@ -176,7 +176,7 @@ class UsersController extends Controller
                         ImageDestroy($logo);
                         ImageDestroy($ts_viewer);
                         ImageDestroy($baseimagen);
-                        $url = "https://5bconectate.com/influmedia/backend/public/"."".$objectSee->codigo."_salida.png";
+                        $url = "https://somosinflumedia.com/backend/public/"."".$objectSee->codigo."_salida.png";
                         Mail::send('emails.confirm', ['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'app' => 'http://me.JoseDanielRodriguez.gt', 'password' => $request->get('password'), 'username' => $objectSee->username, 'codigo' => $objectSee->codigo,'email' => $objectSee->email,'imagen' => $url, 'name' => $objectSee->nombres.' '.$objectSee->apellidos,], function (Message $message) use ($objectSee){
                             $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                     ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
@@ -245,8 +245,8 @@ class UsersController extends Controller
                      if ($objectSee) {
                         $baseimagen = ImageCreateTrueColor(550,1000);
                         //Cargamos la primera imagen(cabecera)
-                        if(file_exists("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png")){
-                            $logo = ImageCreateFromPng("https://5bconectate.com/influmedia/Asset/img/Invitacion-min.png");
+                        if(file_exists("https://somosinflumedia.com/Asset/img/Invitacion-min.png")){
+                            $logo = ImageCreateFromPng("https://somosinflumedia.com/Asset/img/Invitacion-min.png");
 
                         }else{
                             $logo = ImageCreateFromPng("Invitacion.png");
@@ -255,7 +255,7 @@ class UsersController extends Controller
                         //Unimos la primera imagen con la imagen base
                         imagecopymerge($baseimagen, $logo, 0, 0, 0, 0, 550, 1000, 100);
                         //Cargamos la segunda imagen(cuerpo)
-                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=175x175&cht=qr&chl=https://5bconectate.com/influmedia/dashboard/verificacion.php?codigo=".$objectSee->codigo);
+                        $ts_viewer = ImageCreateFromPng("https://chart.googleapis.com/chart?chs=175x175&cht=qr&chl=https://somosinflumedia.com/dashboard/verificacion.php?codigo=".$objectSee->codigo);
                         //Juntamos la segunda imagen con la imagen base
                         imagecopymerge($baseimagen, $ts_viewer, 322, 790, 0, 0, 175, 175, 100);
                         $img = new TextToImage;
@@ -269,7 +269,7 @@ class UsersController extends Controller
                         ImageDestroy($logo);
                         ImageDestroy($ts_viewer);
                         ImageDestroy($baseimagen);
-                        $url = "https://5bconectate.com/influmedia/backend/public/"."".$objectSee->codigo."_salida.png";
+                        $url = "https://somosinflumedia.com/backend/public/"."".$objectSee->codigo."_salida.png";
                         Mail::send('emails.confirm', ['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'app' => 'http://me.JoseDanielRodriguez.gt', 'password' => $request->get('password'), 'username' => $objectSee->username, 'codigo' => $objectSee->codigo,'email' => $objectSee->email,'imagen' => $url, 'name' => $objectSee->nombres.' '.$objectSee->apellidos,], function (Message $message) use ($objectSee){
                             $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                     ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
