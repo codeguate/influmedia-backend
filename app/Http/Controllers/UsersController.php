@@ -319,10 +319,11 @@ class UsersController extends Controller
                     ImageDestroy($textts_viewer);
                     ImageDestroy($baseimagen);
                     $url = "https://somosinflumedia.com/backend/public/"."".$request->get('codigo')."_invitacion.png";
-                    Mail::send('emails.invitacion', ['imagen2' => 'https://somosinflumedia.com/backend/public/invitacion2.png','email' => $request->get('email'),'imagen' => $url, 'name' => $request->get('nombre')], function (Message $message) use ($request){
+                    Mail::send('emails.invitacion', ['imagen2' => 'https://somosinflumedia.com/backend/public/invitacion2.png','imagen' => $url], function (Message $message) use ($request){
                         $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->to($request->get('email'),$request->get('nombre'))
+                                ->cc("jdanielr61@gmail.com",$request->get('nombre'))
                                 ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->subject('Invitacion Influmedia');
                     
