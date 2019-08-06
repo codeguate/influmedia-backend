@@ -185,11 +185,11 @@ class UsersController extends Controller
                                     ->subject('Somos Influmedia');
                         
                         });
-                            // $apiKey = 'SX1SLWK6MOYRZHBIGD1Y';
-                            // $client = (new Factory)->create($apiKey);
-                            // $number = $objectSee->telefono;
-                            // $message = new Image($number, $url);
-                            // $response = $client->send($message);
+                            $apiKey = 'D1Z5HFV4W76E7R2RY3A3';
+                            $client = (new Factory)->create($apiKey);
+                            $number = $objectSee->telefono;
+                            $message = new Image($number, $url);
+                            $response = $client->send($message);
                         
 
                             return  Response::json($objectSee, 200);
@@ -278,13 +278,13 @@ class UsersController extends Controller
                                     ->subject('Somos Influmedia');
                         
                         });
-                    //     $apiKey = 'BT2VFMDLYHTIREKDQCF7';
-                    // $client = (new Factory)->create($apiKey);
-                    //         $number = $objectSee->telefono;
-                    //         $message = new Image($number, $url);
+                            $apiKey = 'D1Z5HFV4W76E7R2RY3A3';
+                            $client = (new Factory)->create($apiKey);
+                            $number = $objectSee->telefono;
+                            $message = new Image($number, $url);
                             // $pdf =    $this->makePDF(['empresa' => 'Registro 5B', 'url' => 'https://www.JoseDanielRodriguez.com', 'app' => 'http://me.JoseDanielRodriguez.gt', 'password' => $request->get('password'), 'username' => $objectSee->username, 'codigo' => $objectSee->codigo, 'email' => $objectSee->email, 'name' => $objectSee->nombres.' '.$objectSee->apellidos]);
                             // $message = new whMessage($number, "data:image/png;base64,".base64_encode(QrCode::format('png')->size(250)->generate($objectSee->codigo))."");
-                            // $response = $client->send($message);
+                            $response = $client->send($message);
                         
                             
                             return  Response::json($objectSee, 200);
