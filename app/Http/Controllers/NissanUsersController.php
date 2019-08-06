@@ -71,19 +71,7 @@ class NissanUsersController extends Controller
     */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'nombre'          => 'required',
-            'telefono'          => 'required',
-        ]);
-        if ( $validator->fails() ) {
-            $returnData = array (
-                'status' => 400,
-                'message' => 'Invalid Parameters',
-                'validator' => $validator
-            );
-            return Response::json($returnData, 400);
-        }
-        else {
+         {
             try {
                 $newObject = new NissanUsers();
                 $newObject->nombre            = $request->get('nombre');
