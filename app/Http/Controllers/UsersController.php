@@ -294,7 +294,7 @@ class UsersController extends Controller
                         $logo = ImageCreateFromPng("https://somosinflumedia.com/Asset/img/Invitacion-min.png");
 
                     }else{
-                        $logo = ImageCreateFromPng("fondo_invitacion.png");
+                        $logo = ImageCreateFromPng("fondo_invitacio.png");
 
                     }
                     //Unimos la primera imagen con la imagen base
