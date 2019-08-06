@@ -308,7 +308,7 @@ class UsersController extends Controller
                     imagecopymerge($baseimagen, $textts_viewer, 270, 620, 0, 0, 300, 70, 100);
                     //Juntamos la segunda imagen con la imagen base
                     $img = new TextToImage;
-                    $img->createImage(strtoupper($request->get('nombre')), 12, 300,70);
+                    $img->createImage(strtoupper($request->get('nombre')), 10, 300,70);
                     $img->saveAsPng((str_replace(" ", "-", $request->get('nombre'))).'-nombre','');
                     $textImg = ImageCreateFromPng("".(str_replace(" ", "-", $request->get('nombre')))."-nombre.png");
                     imagecopymerge($baseimagen, $textImg, 90, 620, 0, 0, 300, 70, 100);
@@ -323,7 +323,7 @@ class UsersController extends Controller
                         $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->to($request->get('email'),$request->get('nombre'))
-                                ->cc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
+                                ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
                                 ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->subject('Invitacion Influmedia');
                     
