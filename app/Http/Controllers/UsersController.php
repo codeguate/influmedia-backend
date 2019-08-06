@@ -323,7 +323,7 @@ class UsersController extends Controller
                         $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->to($request->get('email'),$request->get('nombre'))
-                                ->cc("jdanielr61@gmail.com",$request->get('nombre'))
+                                ->cc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
                                 ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
                                 ->subject('Invitacion Influmedia');
                     
