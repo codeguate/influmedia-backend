@@ -305,13 +305,13 @@ class UsersController extends Controller
                     $ts_viewer->createImage($request->get('codigo'), 12, 300,70);
                     $ts_viewer->saveAsPng($request->get('codigo').'-cod','');
                     $textts_viewer = ImageCreateFromPng("".$request->get('codigo')."-cod.png");
-                    imagecopymerge($baseimagen, $textts_viewer, 270, 320, 0, 0, 300, 70, 100);
+                    imagecopymerge($baseimagen, $textts_viewer, 270, 520, 0, 0, 300, 70, 100);
                     //Juntamos la segunda imagen con la imagen base
                     $img = new TextToImage;
                     $img->createImage(strtoupper($request->get('nombre')), 10, 300,70);
                     $img->saveAsPng((str_replace(" ", "-", $request->get('nombre'))).'-nombre','');
                     $textImg = ImageCreateFromPng("".(str_replace(" ", "-", $request->get('nombre')))."-nombre.png");
-                    imagecopymerge($baseimagen, $textImg, 90, 320, 0, 0, 300, 70, 100);
+                    imagecopymerge($baseimagen, $textImg, 90, 520, 0, 0, 300, 70, 100);
                     //Mostramos la imagen en el navegador
                     ImagePng($baseimagen,"".$request->get('codigo')."_invitacion.png",5);
                     //Limpiamos la memoria utilizada con las imagenes
