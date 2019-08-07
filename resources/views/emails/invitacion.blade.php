@@ -8,8 +8,7 @@
 </head>
 <body>
 <div class="">
-    <img src="{!! $imagen2 !!}" style="height: 800px;width:618px;" alt="">
-    <img src="{!! $imagen !!}" style="height: 800px;width:618px;" alt="">
+    <img src="{!! $imagen !!}" style="height: 1000px;width:614px;" alt="">
   </div>
 </body>
 </html>
