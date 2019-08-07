@@ -319,36 +319,37 @@ class UsersController extends Controller
                     ImageDestroy($textts_viewer);
                     ImageDestroy($baseimagen);
                     $url = "https://somosinflumedia.com/backend/public/"."".$request->get('codigo')."_invitacion.png";
-                    $objectUpdate = Pendiente::whereRaw("codigo=?",$request->get('codigo'))->first();
-                    if ($objectUpdate) {
-                        try {
-                        DB::beginTransaction();
-
-                            $objectUpdate->activa = true;
                     
-                            $objectUpdate->save();
-                            DB::commit();
-
-                        } catch (Exception $e) {
-                            $returnData = array (
-                                'status' => 500,
-                                'message' => $e->getMessage()
-                            );
-                            
-                            DB::rollback();
-                            
-                            return Response::json($returnData, 500);
-                        }
-                    }
-                    else {
-                        $returnData = array (
-                            'status' => 404,
-                            'message' => 'No record found'
-                        );
-                        DB::rollback();
-                        return Response::json($returnData, 404);
-                    }
                     if($request->get('email')!=""){
+                        $objectUpdate = Pendiente::whereRaw("codigo=?",$request->get('codigo'))->first();
+                            if ($objectUpdate) {
+                                try {
+                                DB::beginTransaction();
+
+                                    $objectUpdate->activa = true;
+                            
+                                    $objectUpdate->save();
+                                    DB::commit();
+
+                                } catch (Exception $e) {
+                                    $returnData = array (
+                                        'status' => 500,
+                                        'message' => $e->getMessage()
+                                    );
+                                    
+                                    DB::rollback();
+                                    
+                                    return Response::json($returnData, 500);
+                                }
+                            }
+                            else {
+                                $returnData = array (
+                                    'status' => 404,
+                                    'message' => 'No record found'
+                                );
+                                DB::rollback();
+                                return Response::json($returnData, 404);
+                            }
                         Mail::send('emails.invitacion', ['imagen2' => 'https://somosinflumedia.com/backend/public/invitacion2.png','imagen' => $url], function (Message $message) use ($request){
                             $message->from('noreplay@smartdsmedia.com', 'Invitacion Influmedia')
                                     ->sender('noreplay@smartdsmedia.com', 'Invitacion Influmedia')
