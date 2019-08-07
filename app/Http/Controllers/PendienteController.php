@@ -16,7 +16,7 @@ class PendienteController extends Controller
     */
     public function index()
     {
-        return Response::json(Pendiente::whereRaw('activa=false')->get(), 200);
+        return Response::json(Pendiente::whereRaw('activa=0')->get(), 200);
     }
     
     public function getThisByFilter(Request $request, $id,$state)
