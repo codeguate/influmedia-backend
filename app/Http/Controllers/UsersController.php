@@ -319,7 +319,7 @@ class UsersController extends Controller
                     ImageDestroy($textts_viewer);
                     ImageDestroy($baseimagen);
                     $url = "https://somosinflumedia.com/backend/public/"."".$request->get('codigo')."_invitacion.png";
-                    $objectUpdate = Pendiente::whereRaw("codigo=?",$request->get('codigo'));
+                    $objectUpdate = Pendiente::whereRaw("codigo=?",$request->get('codigo'))->first();
                     if ($objectUpdate) {
                         try {
                         DB::beginTransaction();
