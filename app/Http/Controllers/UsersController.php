@@ -319,17 +319,15 @@ class UsersController extends Controller
                     ImageDestroy($textts_viewer);
                     ImageDestroy($baseimagen);
                     $url = "https://somosinflumedia.com/backend/public/"."".$request->get('codigo')."_invitacion.png";
-                    
+                    DB::beginTransaction();
                     if($request->get('email')!=""){
                         $objectUpdate = Pendiente::whereRaw("codigo=?",$request->get('codigo'))->first();
                             if ($objectUpdate) {
                                 try {
-                                DB::beginTransaction();
 
                                     $objectUpdate->activa = true;
                             
                                     $objectUpdate->save();
-                                    DB::commit();
 
                                 } catch (Exception $e) {
                                     $returnData = array (
@@ -365,6 +363,7 @@ class UsersController extends Controller
                         'message' => 'success',
                         'url' => $url
                     );
+                    DB::commit();
                     return Response::json($returnData, 200);
 
            }else{
