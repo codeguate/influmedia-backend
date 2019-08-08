@@ -7,6 +7,7 @@ use App\Http\Requests;
 use App\NissanUsers;
 use Google\Spreadsheet\DefaultServiceRequest;
 use Google\Spreadsheet\ServiceRequestFactory;
+use Google\Spreadsheet\SpreadsheetService;
 use DB;
 use Google_Client;
 use Google_Service_Drive;
@@ -111,8 +112,8 @@ class NissanUsersController extends Controller
                 ServiceRequestFactory::setInstance($serviceRequest);
                 
                 //Obtenemos los Spreadsheets disponibles para las credenciales actuales
-                $spreadsheetService = new Google\Spreadsheet\SpreadsheetService();
-                $spreadsheetFeed = $spreadsheetService->getSpreadsheets();
+                $spreadsheetService = new SpreadsheetService();
+                $spreadsheetFeed = $spreadsheetService->getSpreadsheetFeed();
                 
                 // Obtenemos la spreadsheet por su nombre
                 $spreadsheet = $spreadsheetFeed->getByTitle($nombreSpreahSheet);
