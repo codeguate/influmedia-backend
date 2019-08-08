@@ -42,23 +42,23 @@ class UsersController extends Controller
         if($request->get('filter')){
             switch ($request->get('filter')) {
                 case 'state':{
-                    $objectSee = Users::whereRaw('state=?',[$state])->get();
+                    $objectSee = Users::whereRaw('state=?',[$state])->with('codigos')->get();
                     break;
                 }
                 case 'email':{
-                    $objectSee = Users::whereRaw('email=?',[$state])->get();
+                    $objectSee = Users::whereRaw('email=?',[$state])->with('codigos')->get();
                     break;
                 }
                 case 'telefono':{
-                    $objectSee = Users::whereRaw('telefono=?',[$state])->get();
+                    $objectSee = Users::whereRaw('telefono=?',[$state])->with('codigos')->get();
                     break;
                 }
                 case 'dpi':{
-                    $objectSee = Users::whereRaw('dpi=?',[$state])->get();
+                    $objectSee = Users::whereRaw('dpi=?',[$state])->with('codigos')->get();
                     break;
                 }
                 case 'codigo':{
-                    $objectSee = Users::whereRaw('codigo=?',[$state])->get();
+                    $objectSee = Users::whereRaw('codigo=?',[$state])->with('codigos')->get();
                     break;
                 }
                 default:{
