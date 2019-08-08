@@ -26,6 +26,6 @@ class Users extends Authenticatable
     }
 
     public function codigos(){
-        return $this->hasOne('App\Codigos','codigo','codigo');
+        return $this->hasOne('App\Codigos','id','asignado');
     }
 }
