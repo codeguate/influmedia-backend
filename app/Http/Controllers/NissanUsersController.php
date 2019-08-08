@@ -8,6 +8,7 @@ use App\NissanUsers;
 use Google\Spreadsheet\DefaultServiceRequest;
 use Google\Spreadsheet\ServiceRequestFactory;
 use DB;
+use Google_Client;
 use Response;
 use Validator;
 class NissanUsersController extends Controller
