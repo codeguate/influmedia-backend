@@ -74,7 +74,7 @@ class NissanUsersController extends Controller
          {
             try {
                 $newObject = new NissanUsers();
-                $newObject->nombre            = $request->get('nombre');
+                $newObject->nombres            = $request->get('nombre');
                 $newObject->telefono            = $request->get('telefono');
                 $newObject->email            = $request->get('email');
                 $newObject->save();
@@ -135,7 +135,7 @@ class NissanUsersController extends Controller
         $objectUpdate = NissanUsers::find($id);
         if ($objectUpdate) {
             try {
-                $objectUpdate->nombre = $request->get('nombre', $objectUpdate->nombre);
+                $objectUpdate->nombres = $request->get('nombre', $objectUpdate->nombre);
                 $objectUpdate->telefono = $request->get('telefono', $objectUpdate->telefono);
                 $objectUpdate->email = $request->get('email', $objectUpdate->email);
     
