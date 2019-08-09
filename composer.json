@@ -9,10 +9,11 @@
         "barryvdh/laravel-cors": "^0.11.3",
         "barryvdh/laravel-dompdf": "^0.8.4",
         "fideloper/proxy": "^4.0",
-        "laravel/framework": "5.6.*",
+        "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "~1.0",
         "mpdf/mpdf": "^8.0",
+        "revolution/laravel-google-sheets": "^4.0",
         "rodrigowba/apiwha-php-sdk": "^1.0",
         "simplesoftwareio/simple-qrcode": "~2"
     },
