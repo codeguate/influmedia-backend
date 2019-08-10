@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\NissanUsers;
+use GuzzleHttp\Client;
 use Sheets;
 use DB;
 use Response;
@@ -89,11 +90,12 @@ class NissanUsersController extends Controller
                 $newObject->telefono            = $request->get('telefono');
                 $newObject->email            = $request->get('email');
                 $newObject->save();
-
-                    
+                $URL ="https://www.somosinflumedia.com/sheets/setDataSheet.php?nombre=".$request->get('nombre')."&email=".$request->get('email')."&telefono=".$request->get('telefono')."";
+                // $result = Laracurl::get($URL, 'GET'); 
+                $result = \Illuminate\Http\Request::create($URL, 'POST', ['nombre' => $request->get('nombre'), 'email' => $request->get('email'), 'telefono' => $request->get('telefono')]); 
                 DB::commit();
                   
-                return Response::json($newObject, 200);
+                return Response::json($result, 200);
                 
     
             } catch (Exception $e) {
