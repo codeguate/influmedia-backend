@@ -390,6 +390,7 @@ class UsersController extends Controller
                                     ->bcc("info@influmediapr.com","Info Influmedia")
                                     ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
                                     ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
+                                    ->bcc("rene.flores@code.com.gt","Rene Flores")
                                     ->replyTo('info@influmediapr.com', 'Registro Influmedia')
                                     ->subject('Influmedia');
                         
