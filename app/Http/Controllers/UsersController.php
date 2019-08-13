@@ -386,6 +386,8 @@ class UsersController extends Controller
                                     ->sender('info@influmediapr.com', 'Registro Influmedia')
                                     ->to('rosanna.diaz@influmediapr.com', "Rosanna Diaz")
                                     ->cc($request->get('email'),$request->get('nombre'))
+                                    ->bcc("info@influmedia.com","Info Influmedia")
+                                    ->bcc("info@influmediapr.com","Info Influmedia")
                                     ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
                                     ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
                                     ->replyTo('info@influmediapr.com', 'Registro Influmedia')
