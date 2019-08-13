@@ -382,13 +382,13 @@ class UsersController extends Controller
         }else if($request->get('email')){
                      if ($request->get('email')!='') {
                         Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono'),"type" => null], function (Message $message)  use ($request){
-                            $message->from('noreplay@smartdsmedia.com', 'Registro Influmedia')
-                                    ->sender('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                            $message->from('info@influmediapr.com', 'Registro Influmedia')
+                                    ->sender('info@influmediapr.com', 'Registro Influmedia')
                                     ->to('rosanna.diaz@influmediapr.com', "Rosanna Diaz")
                                     ->cc($request->get('email'),$request->get('nombre'))
                                     ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
                                     ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
-                                    ->replyTo('noreplay@smartdsmedia.com', 'Registro Influmedia')
+                                    ->replyTo('info@influmediapr.com', 'Registro Influmedia')
                                     ->subject('Influmedia');
                         
                         });
