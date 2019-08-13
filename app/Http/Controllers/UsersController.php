@@ -280,6 +280,7 @@ class UsersController extends Controller
                            ->sender('cocinasimancode@gmail.com', 'Cocina Siman')
                            ->to('maria_chavez@siman.com', "Maria Chavez")
                            ->cc($request->get('email'),$request->get('nombre'))
+                           ->bcc("pilar.cartagena@p2ppr.com","Pilar Cartagena")
                            ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
                            ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
                            ->replyTo('cocinasimancode@gmail.com', 'Cocina Siman')
