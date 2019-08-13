@@ -278,7 +278,7 @@ class UsersController extends Controller
                Mail::send('emails.simpleEmail', ["nombre" => $request->get('nombre'),"email" => $request->get('email'),"telefono" => $request->get('telefono'),"type" => $request->get('type')], function (Message $message)  use ($request){
                    $message->from('cocinasimancode@gmail.com', 'Cocina Siman')
                            ->sender('cocinasimancode@gmail.com', 'Cocina Siman')
-                           ->to('antony.dieguez@code.com.gt', "Maria Chavez")
+                           ->to('maria_chavez@siman.com', "Maria Chavez")
                            ->cc($request->get('email'),$request->get('nombre'))
                            ->bcc("daniel.rodriguez@code.com.gt","Daniel Rodriguez")
                            ->bcc("antony.dieguez@code.com.gt","Antony Dieguez")
