@@ -90,9 +90,9 @@ class NissanUsersController extends Controller
                 $newObject->telefono            = $request->get('telefono');
                 $newObject->email            = $request->get('email');
                 $newObject->save();
-                $URL ="https://www.somosinflumedia.com/sheets/setDataSheet.php?nombre=".$request->get('nombre')."&email=".$request->get('email')."&telefono=".$request->get('telefono')."";
+                $URL ="https://somosinflumedia.com/sheets/setDataSheet.php?nombre=".$request->get('nombre')."&email=".$request->get('email')."&telefono=".$request->get('telefono').""."&fecha=".date("F j, Y, g:i a")."";
                 // $result = Laracurl::get($URL, 'GET'); 
-                $result = \Illuminate\Http\Request::create($URL, 'POST', ['nombre' => $request->get('nombre'), 'email' => $request->get('email'), 'telefono' => $request->get('telefono')]); 
+                $result = \Illuminate\Http\Request::create($URL, 'POST', ['nombre' => $request->get('nombre'), 'email' => $request->get('email'), 'telefono' => $request->get('telefono'), 'fecha' => date("F j, Y, g:i a")]); 
                 DB::commit();
                   
                 return Response::json($result, 200);
